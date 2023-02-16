@@ -1,88 +1,125 @@
 // Переменные /////////////////////////////////////////////////////////////////////////////////////
 
-$maxWidth: 1600;
-$maxWidthContainer: 1210;
+$maxWidth: 1920;
+$maxWidthContainer: 1460;
+
+$accent: #FBD784;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Миксины ////////////////////////////////////////////////////////////////////////////////////////
 
 @mixin adaptive-value ($property, $startSize, $minSize, $type) {
-  $addSize: $startSize - $minSize;
+ $addSize: $startSize - $minSize;
 
-  @if $type==1 {
-    // Толко если меньше контейнера
-    #{$property}: $startSize + px;
+ @if $type==1 {
+  // Толко если меньше контейнера
+  #{$property}: $startSize + px;
 
-    @media (max-width: #{$maxWidthContainer + px}) {
-      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
-    }
+  @media (max-width: #{$maxWidthContainer + px}) {
+   #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
   }
+ }
 
-  @else if $type==2 {
-    // Только если больше контейнера
-    #{$property}: $startSize + px;
+ @else if $type==2 {
+  // Только если больше контейнера
+  #{$property}: $startSize + px;
 
-    @media (min-width: #{$maxWidthContainer + px}) {
-      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
-    }
+  @media (min-width: #{$maxWidthContainer + px}) {
+   #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
   }
+ }
 
-  @else {
-    // Всегда 
-    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
-  }
+ @else {
+  // Всегда 
+  #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+ }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Шаблоны ////////////////////////////////////////////////////////////////////////////////////////
 
+%OpenSans-400 {
+ font-family: 'Open Sans', sans-serif;
+ font-weight: 400;
+}
+
+%OpenSans-600 {
+ font-family: 'Open Sans', sans-serif;
+ font-weight: 600;
+}
+
+%OpenSans-700 {
+ font-family: 'Open Sans', sans-serif;
+ font-weight: 700;
+}
+
+%DMSans-400 {
+ font-family: 'DM Sans', sans-serif;
+ font-weight: 400;
+}
+
+%DMSans-700 {
+ font-family: 'DM Sans', sans-serif;
+ font-weight: 700;
+}
+
+%Roboto-300 {
+ font-family: 'Roboto', sans-serif;
+ font-weight: 300;
+}
+
+%Roboto-700 {
+ font-family: 'Roboto', sans-serif;
+ font-weight: 700;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Глобальные настройки ///////////////////////////////////////////////////////////////////////////
 
 html {
-  box-sizing: border-box;
-  height: 100%;
+ box-sizing: border-box;
+ height: 100%;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+ box-sizing: border-box;
 }
 
 body {
-  height: 100%;
-  color: #000000;
+ height: 100%;
+ color: #fff;
+ background: #000;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
+ color: inherit;
+ display: inline-block;
 }
 
 input {
-  background: transparent;
-  border: none;
+ background: transparent;
+ border: none;
 }
 
 
 img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+ display: block;
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
 }
 
 button {
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  display: block;
-  padding: 0;
+ cursor: pointer;
+ border: none;
+ background: transparent;
+ display: block;
+ padding: 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,75 +127,339 @@ button {
 // Блоки //////////////////////////////////////////////////////////////////////////////////////////
 
 .container {
-  max-width: $maxWidthContainer + px;
-  padding: 0 15px;
-  margin: 0 auto;
-  height: 100%;
+ max-width: $maxWidthContainer + px;
+ padding: 0 15px;
+ margin: 0 auto;
+ height: 100%;
 }
 
 .visually-hidden:not(:focus):not(:active),
 input[type="checkbox"].visually-hidden,
 input[type="radio"].visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  bottom: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
+ position: absolute;
+ width: 1px;
+ height: 1px;
+ margin: -1px;
+ bottom: 0;
+ padding: 0;
+ white-space: nowrap;
+ clip-path: inset(100%);
+ clip: rect(0, 0, 0, 0);
+ overflow: hidden;
 }
 
 .page {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
+ overflow: hidden;
+ display: flex;
+ flex-direction: column;
+ min-height: 100%;
+ position: relative;
 }
 
 .footer {
-  margin-top: auto;
+ margin-top: auto;
 }
 
 .hidden {
-  display: none;
+ display: none;
 }
 
 .lock {
-  overflow: hidden;
+ overflow: hidden;
 }
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  visibility: hidden;
-  transition: all .3s ease;
-  z-index: 50;
-  cursor: pointer;
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: rgba(0, 0, 0, 0.7);
+ opacity: 0;
+ visibility: hidden;
+ transition: all .3s ease;
+ z-index: 50;
+ cursor: pointer;
 
-  &.active {
-    opacity: 1;
-    visibility: visible;
-  }
+ &.active {
+  opacity: 1;
+  visibility: visible;
+ }
 }
 
 .ibg {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  z-index: -1;
+ background-position: center;
+ background-size: cover;
+ background-repeat: no-repeat;
+ position: relative;
+ z-index: -1;
 
-  img {
-    display: none;
-  }
+ img {
+  display: none;
+ }
 }
+
+.logo {
+ outline: none;
+
+ svg {
+  display: block;
+ }
+
+ path {
+  transition: all .3s ease;
+ }
+
+ &:focus {
+  path {
+   fill: $accent;
+  }
+ }
+
+ @media (min-width: 768px) {
+  &:hover {
+   path {
+    fill: $accent;
+   }
+  }
+ }
+}
+
+.heading {
+ @extend %OpenSans-700;
+
+ &__suptitle {
+  line-height: 25px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: $accent;
+  position: relative;
+  @include adaptive-value("margin-bottom", 30, 15, 1);
+  @include adaptive-value("font-size", 18, 14, 1);
+
+  @media (max-width: 768px) {
+   max-width: 300px;
+   margin: 0 auto;
+  }
+ }
+
+ &__title {
+  line-height: 1.3;
+  text-align: center;
+  @include adaptive-value("font-size", 64, 32, 1);
+ }
+}
+
+.line--double {
+ position: relative;
+ max-width: 330px;
+ width: 100%;
+
+ &::before {
+  content: "";
+  position: absolute;
+  left: unset;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto 0;
+  width: 72px;
+  @include adaptive-value("width", 72, 36, 1);
+  height: 2px;
+  background: $accent;
+ }
+
+ &::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto 0;
+  width: 72px;
+  @include adaptive-value("width", 72, 36, 1);
+  height: 2px;
+  background: $accent;
+ }
+
+ @media (max-width: 768px) {
+  padding: unset;
+
+  &::after,
+  &::before {
+   display: none;
+  }
+ }
+}
+
+.line--left {
+ @include adaptive-value("padding-left", 100, 50, 1);
+
+ &::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto 0;
+  width: 72px;
+  @include adaptive-value("width", 72, 36, 1);
+  height: 2px;
+  background: $accent;
+ }
+
+ @media (max-width: 768px) {
+  padding: unset;
+
+  &::after {
+   display: none;
+  }
+ }
+}
+
+.main-title {
+ span {
+  line-height: 1.1;
+  display: block;
+  @extend %OpenSans-700;
+  @include adaptive-value("font-size", 96, 38, 1);
+ }
+
+ .heading__suptitle {
+  text-align: left;
+
+  @media (max-width: 768px) {
+   text-align: center;
+  }
+ }
+
+ .heading__title {
+  @extend %OpenSans-400;
+  text-align: left;
+  line-height: 1.2;
+  @include adaptive-value("font-size", 88, 34, 1);
+
+  @media (max-width: 768px) {
+   text-align: center;
+  }
+ }
+
+}
+
+.social {
+ margin-top: 15px;
+
+ &__item {
+  &+li {
+   margin-top: 20px;
+  }
+
+  a {
+   padding: 5px 5px;
+   transition: all .3s ease;
+   outline: none;
+
+   path {
+    transition: all .3s ease;
+   }
+
+   &:focus {
+    transform: scale(1.5);
+
+    path {
+     fill: $accent;
+    }
+   }
+
+   @media (min-width: 768px) {
+    &:hover {
+     transform: scale(1.2);
+
+     path {
+      fill: $accent;
+     }
+    }
+   }
+  }
+ }
+}
+
+.link {
+ @extend %OpenSans-700;
+ font-size: 18px;
+ line-height: 25px;
+ color: $accent;
+ display: flex;
+ align-items: center;
+ text-decoration: none;
+ position: relative;
+ outline: none;
+
+ svg {
+  transform: rotate(-90deg);
+  margin-left: 10px;
+
+  path {
+   fill: $accent;
+  }
+ }
+
+ &::after {
+  content: "";
+  background: $accent;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  transition: all .3s ease;
+  bottom: 0;
+ }
+
+ &:focus {
+  &::after {
+   width: 100%;
+  }
+ }
+
+ @media (min-width: 768px) {
+  &:hover {
+   &::after {
+    width: 100%;
+   }
+  }
+ }
+}
+
+.btn {
+ @extend %DMSans-700;
+ font-size: 17px;
+ line-height: 22px;
+ color: #000000;
+ background: $accent;
+ border-radius: 8px;
+ padding: 24px 24px;
+ text-align: center;
+ text-decoration: none;
+ border: 2px solid $accent;
+ transition: all .3s ease;
+ outline: none;
+
+ &:focus {
+  color: #fff;
+  background: transparent;
+ }
+
+ @media (min-width: 768px) {
+  &:hover {
+   color: #fff;
+   background: transparent;
+  }
+ }
+
+ &::after {
+  display: none;
+ }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
